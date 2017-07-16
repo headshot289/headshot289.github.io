@@ -5,17 +5,17 @@
   
   <title>uiautomator 5大核心类使用总结 | 隐身</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象uiDevice.click(int x, int y); // 点击坐标uiDevic">
+  <meta name="description" content="前言Uiautomator是基于instrumentation的Android UI 自动化测试框架，下面介绍一下这个框架核心的5个核心类。 UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation)">
 <meta name="keywords" content="uiautomator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="uiautomator 5大核心类使用总结">
 <meta property="og:url" content="http://yoursite.com/2017/07/16/android-uiautomator-top5-core-class/index.html">
 <meta property="og:site_name" content="隐身">
-<meta property="og:description" content="#UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象uiDevice.click(int x, int y); // 点击坐标uiDevic">
-<meta property="og:updated_time" content="2017-07-16T13:44:58.000Z">
+<meta property="og:description" content="前言Uiautomator是基于instrumentation的Android UI 自动化测试框架，下面介绍一下这个框架核心的5个核心类。 UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation)">
+<meta property="og:updated_time" content="2017-07-16T14:30:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="uiautomator 5大核心类使用总结">
-<meta name="twitter:description" content="#UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象uiDevice.click(int x, int y); // 点击坐标uiDevic">
+<meta name="twitter:description" content="前言Uiautomator是基于instrumentation的Android UI 自动化测试框架，下面介绍一下这个框架核心的5个核心类。 UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation)">
   
     <link rel="alternate" href="/atom.xml" title="隐身" type="application/atom+xml">
   
@@ -86,16 +86,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#UiDevice<br>提供相关设备的状态信息，可以使用这个类来模拟用户操作。<br>如：点击坐标、按下home键、旋转屏幕。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象</div><div class="line">uiDevice.click(int x, int y); // 点击坐标</div><div class="line">uiDevice.pressHome(); // 模拟按下Home按键</div><div class="line">uiDevice.setOrientationRight(); // 旋转屏幕</div></pre></td></tr></table></figure></p>
-<p>#UiSelector<br>用于搜索符合条件的ui控件，如果发现多个满足条件的控件默认返回第一个控件，返回类型为UiObject对象。<br>如果没有找到控件则会抛出UiAutomatorObjectNotFoundException异常。<br>在构造UiSelector的时候可以组合使用多个属性来定位具体的控件，还可以使用childSelector()函数来嵌套UiSelector对象。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiSelector uiSelector = new UiSelector()</div><div class="line">                               .className(android.widget.ListView.class)</div><div class="line">                               .instance(1)</div><div class="line">                               .childSelector(new UiSelector().text(&quot;Apps&quot;));</div><div class="line">UiObject appItem = UiDevice.getInstance(instrumentation).findObject(uiSelector);</div></pre></td></tr></table></figure></p>
-<p>#UiObject<br>代表一个UI控件，通过UiSelector来查找获取UiObject。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiObject cancelButton = new UiObject(new UiSelector().text(&quot;Cancel&quot;)); // 查找指定文本内容的UiObject</div><div class="line">UiObject okButton = new UiObject(new UiSelector().text(&quot;OK&quot;).className(android.widget.Button.class)); // 指定控件类型</div><div class="line">if(cancelButton.exists()  &amp;&amp; cancelButton.isEnabled()) &#123; // 判断控件是否存在，模拟用户点击</div><div class="line">    okButton.click();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>#UiCollection<br>通过UiSelector来查找获取，对应Android系统中的ViewGroup以及子控件。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 通过UiSelector来获取FrameLayout下的所有子控件的UiCollection</div><div class="line">UiCollection views = new UiCollection(new UiSelector().className(android.widget.FrameLayout.class));</div><div class="line"></div><div class="line">// 获取子ViewGroup下的控件数量</div><div class="line">int count = views.getChildCount(new UiSelector().className(android.widget.LinearLayout.class));</div><div class="line"></div><div class="line">// 查找嵌套view，并点击</div><div class="line">UiObject view = views.getChildByText(new UiSelector().className(android.widget.LinearLayout.class), &quot;Apps&quot;);</div><div class="line">view.click();</div></pre></td></tr></table></figure></p>
-<p>#UiScrollable<br>代表可滚动的控件，可以用UiScrollable来模拟水平或者垂直滚动的UI元素。<br>如果需要操作的元素在屏幕外需要滚动屏幕才能看到的情况下需要使用UiScrollable。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 滚动列表并点击查找到的控件</div><div class="line">UiScrollable scrollable = new UiScrollable(new UiSelector().className(android.widget.ListView.class));</div><div class="line">UiObject view = scrollable.getChildByText(new UiSelector().className(android.widget.LinearLayout.class), &quot;Apps&quot;);</div><div class="line">view.click()</div></pre></td></tr></table></figure></p>
-
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Uiautomator是基于instrumentation的Android UI 自动化测试框架，下面介绍一下这个框架核心的5个核心类。</p>
+<h1 id="UiDevice"><a href="#UiDevice" class="headerlink" title="UiDevice"></a>UiDevice</h1><p>提供相关设备的状态信息，可以使用这个类来模拟用户操作。<br>如：点击坐标、按下home键、旋转屏幕。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象</div><div class="line">uiDevice.click(int x, int y); // 点击坐标</div><div class="line">uiDevice.pressHome(); // 模拟按下Home按键</div><div class="line">uiDevice.setOrientationRight(); // 旋转屏幕</div></pre></td></tr></table></figure></p>
+<h1 id="UiSelector"><a href="#UiSelector" class="headerlink" title="UiSelector"></a>UiSelector</h1><p>用于搜索符合条件的ui控件，如果发现多个满足条件的控件默认返回第一个控件，返回类型为UiObject对象。<br>如果没有找到控件则会抛出UiAutomatorObjectNotFoundException异常。<br>在构造UiSelector的时候可以组合使用多个属性来定位具体的控件，还可以使用childSelector()函数来嵌套UiSelector对象。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiSelector uiSelector = new UiSelector()</div><div class="line">                               .className(android.widget.ListView.class)</div><div class="line">                               .instance(1)</div><div class="line">                               .childSelector(new UiSelector().text(&quot;Apps&quot;));</div><div class="line">UiObject appItem = UiDevice.getInstance(instrumentation).findObject(uiSelector);</div></pre></td></tr></table></figure></p>
+<h1 id="UiObject"><a href="#UiObject" class="headerlink" title="UiObject"></a>UiObject</h1><p>代表一个UI控件，通过UiSelector来查找获取UiObject。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiObject cancelButton = new UiObject(new UiSelector().text(&quot;Cancel&quot;)); // 查找指定文本内容的UiObject</div><div class="line">UiObject okButton = new UiObject(new UiSelector().text(&quot;OK&quot;).className(android.widget.Button.class)); // 指定控件类型</div><div class="line">if(cancelButton.exists()  &amp;&amp; cancelButton.isEnabled()) &#123; // 判断控件是否存在，模拟用户点击</div><div class="line">    okButton.click();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="UiCollection"><a href="#UiCollection" class="headerlink" title="UiCollection"></a>UiCollection</h1><p>通过UiSelector来查找获取，对应Android系统中的ViewGroup以及子控件。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 通过UiSelector来获取FrameLayout下的所有子控件的UiCollection</div><div class="line">UiCollection views = new UiCollection(new UiSelector().className(android.widget.FrameLayout.class));</div><div class="line"></div><div class="line">// 获取子ViewGroup下的控件数量</div><div class="line">int count = views.getChildCount(new UiSelector().className(android.widget.LinearLayout.class));</div><div class="line"></div><div class="line">// 查找嵌套view，并点击</div><div class="line">UiObject view = views.getChildByText(new UiSelector().className(android.widget.LinearLayout.class), &quot;Apps&quot;);</div><div class="line">view.click();</div></pre></td></tr></table></figure></p>
+<h1 id="UiScrollable"><a href="#UiScrollable" class="headerlink" title="UiScrollable"></a>UiScrollable</h1><p>代表可滚动的控件，可以用UiScrollable来模拟水平或者垂直滚动的UI元素。<br>如果需要操作的元素在屏幕外需要滚动屏幕才能看到的情况下需要使用UiScrollable。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 滚动列表并点击查找到的控件</div><div class="line">UiScrollable scrollable = new UiScrollable(new UiSelector().className(android.widget.ListView.class));</div><div class="line">UiObject view = scrollable.getChildByText(new UiSelector().className(android.widget.LinearLayout.class), &quot;Apps&quot;);</div><div class="line">view.click()</div></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/16/android-uiautomator-top5-core-class/" data-id="cj56sjw0400002j95yn2fhpw9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/16/android-uiautomator-top5-core-class/" data-id="cj56x4kow0000i9952klqiau4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uiautomator/">uiautomator</a></li></ul>
@@ -104,6 +105,20 @@
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2017/07/17/automated-testing-of-appium-based-on-openstf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于OpenSTF的Appium自动化测试实现
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -118,7 +133,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/uiautomator/">uiautomator</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/appium/">appium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstf/">openstf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uiautomator/">uiautomator</a></li></ul>
     </div>
   </div>
 
@@ -128,7 +143,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/uiautomator/" style="font-size: 10px;">uiautomator</a>
+      <a href="/tags/appium/" style="font-size: 10px;">appium</a> <a href="/tags/openstf/" style="font-size: 10px;">openstf</a> <a href="/tags/uiautomator/" style="font-size: 10px;">uiautomator</a>
     </div>
   </div>
 
@@ -148,6 +163,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/17/automated-testing-of-appium-based-on-openstf/">基于OpenSTF的Appium自动化测试实现</a>
+          </li>
         
           <li>
             <a href="/2017/07/16/android-uiautomator-top5-core-class/">uiautomator 5大核心类使用总结</a>
