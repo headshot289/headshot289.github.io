@@ -5,17 +5,17 @@
   
   <title>OpenSTF Provider模块详解 | 隐身</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="OpenSTF Provider模块详解简介OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。 启动 Provider可通过 provider [serial..] 命令行启动provider子进程。主要配置参数：heartbeat-i">
+  <meta name="description" content="简介OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。 启动 Provider可通过 provider [serial..] 命令行启动provider子进程。主要配置参数：heartbeat-interval：心跳检测时间间隔。loc">
 <meta name="keywords" content="openstf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenSTF Provider模块详解">
 <meta property="og:url" content="http://yoursite.com/2017/07/16/openstf-provider-detail/index.html">
 <meta property="og:site_name" content="隐身">
-<meta property="og:description" content="OpenSTF Provider模块详解简介OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。 启动 Provider可通过 provider [serial..] 命令行启动provider子进程。主要配置参数：heartbeat-i">
-<meta property="og:updated_time" content="2017-07-16T12:47:54.000Z">
+<meta property="og:description" content="简介OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。 启动 Provider可通过 provider [serial..] 命令行启动provider子进程。主要配置参数：heartbeat-interval：心跳检测时间间隔。loc">
+<meta property="og:updated_time" content="2017-07-16T12:49:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenSTF Provider模块详解">
-<meta name="twitter:description" content="OpenSTF Provider模块详解简介OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。 启动 Provider可通过 provider [serial..] 命令行启动provider子进程。主要配置参数：heartbeat-i">
+<meta name="twitter:description" content="简介OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。 启动 Provider可通过 provider [serial..] 命令行启动provider子进程。主要配置参数：heartbeat-interval：心跳检测时间间隔。loc">
   
     <link rel="alternate" href="/atom.xml" title="隐身" type="application/atom+xml">
   
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="OpenSTF-Provider模块详解"><a href="#OpenSTF-Provider模块详解" class="headerlink" title="OpenSTF Provider模块详解"></a>OpenSTF Provider模块详解</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>OpenSTF通过Provider模块进行设备的跟踪与管理。在Provider模块中使用adbkit中的client.trackDevices([callback])方法可获取到设备的状态，比如有新设备连接或移除。</p>
 <h2 id="启动-Provider"><a href="#启动-Provider" class="headerlink" title="启动 Provider"></a>启动 Provider</h2><p>可通过 <strong>provider [serial..]</strong> 命令行启动provider子进程。<br><strong>主要配置参数：</strong><br><strong>heartbeat-interval：</strong>心跳检测时间间隔。<br><strong>lock-rotation：</strong>是否锁定屏幕方向。<br><strong>max-port：</strong>可分配给设备的最大tcp端口号。<br><strong>min-port：</strong>可分配给设备的最小tcp端口号。<br><strong>mute-master：</strong>使用设备时是否静音。 </p>
 <h2 id="设备过滤器"><a href="#设备过滤器" class="headerlink" title="设备过滤器"></a>设备过滤器</h2><p>filterDevice方法，用于在发现新设备时检查设备连接是否正常。<br><strong>以下情况为连接不正常，返回false：</strong><br>1.device.id无法获取或错误。<br>2.非远程连接模式下通过远程方式连接的设备。<br>3.与启动参数中的serial不一致。<br>除以上情况外该方法会返回一个device对象，表示新设备。</p>
 <h2 id="发现新设备连接"><a href="#发现新设备连接" class="headerlink" title="发现新设备连接"></a>发现新设备连接</h2><p>调用adbkit.trackDevices通过回调方法获取tracker对象，并注册add事件。当发现一台新设备连接时先通过设备过滤器判断该设备是否可用，如果可用则检查设备类型正常后创建并启动device子进程。</p>
@@ -95,7 +95,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/16/openstf-provider-detail/" data-id="cj56pvk1s0001pz955yf181rz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/16/openstf-provider-detail/" data-id="cj56px4ni0000qe9554sz4d7b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstf/">openstf</a></li></ul>
