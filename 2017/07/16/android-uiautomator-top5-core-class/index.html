@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>uiautomator 5大核心类使用总结 | 隐身</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象uiDevice.click(int x, int y); // 点击坐标uiDevic">
+<meta name="keywords" content="-uiautomator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uiautomator 5大核心类使用总结">
+<meta property="og:url" content="http://yoursite.com/2017/07/16/android-uiautomator-top5-core-class/index.html">
+<meta property="og:site_name" content="隐身">
+<meta property="og:description" content="#UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象uiDevice.click(int x, int y); // 点击坐标uiDevic">
+<meta property="og:updated_time" content="2017-07-16T13:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="uiautomator 5大核心类使用总结">
+<meta name="twitter:description" content="#UiDevice提供相关设备的状态信息，可以使用这个类来模拟用户操作。如：点击坐标、按下home键、旋转屏幕。示例代码：1234UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象uiDevice.click(int x, int y); // 点击坐标uiDevic">
+  
+    <link rel="alternate" href="/atom.xml" title="隐身" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">隐身</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-android-uiautomator-top5-core-class" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/16/android-uiautomator-top5-core-class/" class="article-date">
+  <time datetime="2017-07-16T13:37:50.000Z" itemprop="datePublished">2017-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      uiautomator 5大核心类使用总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#UiDevice<br>提供相关设备的状态信息，可以使用这个类来模拟用户操作。<br>如：点击坐标、按下home键、旋转屏幕。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">UiDevice uiDevice = UiDevice.getInstance(instrumentation); // 通过instrumentation获取UiDevice对象</div><div class="line">uiDevice.click(int x, int y); // 点击坐标</div><div class="line">uiDevice.pressHome(); // 模拟按下Home按键</div><div class="line">uiDevice.setOrientationRight(); // 旋转屏幕</div></pre></td></tr></table></figure></p>
+<p>#UiSelector<br>用于搜索符合条件的ui控件，如果发现多个满足条件的控件默认返回第一个控件，返回类型为UiObject对象。<br>如果没有找到控件则会抛出UiAutomatorObjectNotFoundException异常。<br>在构造UiSelector的时候可以组合使用多个属性来定位具体的控件，还可以使用childSelector()函数来嵌套UiSelector对象。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiSelector uiSelector = new UiSelector()</div><div class="line">                               .className(android.widget.ListView.class)</div><div class="line">                               .instance(1)</div><div class="line">                               .childSelector(new UiSelector().text(&quot;Apps&quot;));</div><div class="line">UiObject appItem = UiDevice.getInstance(instrumentation).findObject(uiSelector);</div></pre></td></tr></table></figure></p>
+<p>#UiObject<br>代表一个UI控件，通过UiSelector来查找获取UiObject。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UiObject cancelButton = new UiObject(new UiSelector().text(&quot;Cancel&quot;)); // 查找指定文本内容的UiObject</div><div class="line">UiObject okButton = new UiObject(new UiSelector().text(&quot;OK&quot;).className(android.widget.Button.class)); // 指定控件类型</div><div class="line">if(cancelButton.exists()  &amp;&amp; cancelButton.isEnabled()) &#123; // 判断控件是否存在，模拟用户点击</div><div class="line">    okButton.click();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>#UiCollection<br>通过UiSelector来查找获取，对应Android系统中的ViewGroup以及子控件。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 通过UiSelector来获取FrameLayout下的所有子控件的UiCollection</div><div class="line">UiCollection views = new UiCollection(new UiSelector().className(android.widget.FrameLayout.class));</div><div class="line"></div><div class="line">// 获取子ViewGroup下的控件数量</div><div class="line">int count = views.getChildCount(new UiSelector().className(android.widget.LinearLayout.class));</div><div class="line"></div><div class="line">// 查找嵌套view，并点击</div><div class="line">UiObject view = views.getChildByText(new UiSelector().className(android.widget.LinearLayout.class), &quot;Apps&quot;);</div><div class="line">view.click();</div></pre></td></tr></table></figure></p>
+<p>#UiScrollable<br>代表可滚动的控件，可以用UiScrollable来模拟水平或者垂直滚动的UI元素。<br>如果需要操作的元素在屏幕外需要滚动屏幕才能看到的情况下需要使用UiScrollable。<br>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 滚动列表并点击查找到的控件</div><div class="line">UiScrollable scrollable = new UiScrollable(new UiSelector().className(android.widget.ListView.class));</div><div class="line">UiObject view = scrollable.getChildByText(new UiSelector().className(android.widget.LinearLayout.class), &quot;Apps&quot;);</div><div class="line">view.click()</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/16/android-uiautomator-top5-core-class/" data-id="cj56rtxfm0003zw956m3i0t4n" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uiautomator/">-uiautomator</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/16/android-uiautomator-dump/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          uiautomator dump命令解析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/16/android-monkey-workflow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">monkey测试工具执行流程总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/monkey/">-monkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstf/">-openstf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uiautomator/">-uiautomator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstf/">openstf</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/monkey/" style="font-size: 10px;">-monkey</a> <a href="/tags/openstf/" style="font-size: 10px;">-openstf</a> <a href="/tags/uiautomator/" style="font-size: 20px;">-uiautomator</a> <a href="/tags/openstf/" style="font-size: 10px;">openstf</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/16/android-uiautomator-dump/">uiautomator dump命令解析</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/16/android-uiautomator-top5-core-class/">uiautomator 5大核心类使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/16/android-monkey-workflow/">monkey测试工具执行流程总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/16/app-automation-test-base-on-openstf/">基于OpenSTF的APP自动化测试实践</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/16/openstf-provider-detail/">OpenSTF Provider模块详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 隐身<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
